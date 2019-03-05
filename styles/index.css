@@ -1,0 +1,60 @@
+body {
+  background: #f0f0f0;
+}
+
+.app__container {
+  width: 800px;
+  height: 600px;
+  margin: 100px auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 6px 8px 5px #888;
+  background: black;
+}
+
+.app__start-button {
+  margin: 10px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.app__game-ui {
+  width: 700px;
+  height: 300px;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+}
+
+.app__game-action {
+  width: 700px;
+  height: 200px;
+  position: relative;
+  background-color: white;
+}
+
+.app__game-controls {
+  width: 300px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-right: 1px solid white;
+}
+.app__game-logs {
+  width: 400px;
+  height: 200px;
+  color: white;
+  overflow: hidden;
+}
+.app__game-bottom-section {
+  width: 700px;
+  height: 200px;
+  border: 1px solid white;
+  display: flex;
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/index.css" />
+    <link rel="stylesheet" href="./styles/harrypotterstyle.css" />
+    <link rel="stylesheet" href="./styles/voldemortstyle.css" />
+    <link rel="stylesheet" href="./styles/spells.css" />
+    <link rel="stylesheet" href="./styles/btn.css" />
+    <link rel="stylesheet" href="./styles/heathBar.css" />
+    <link rel="stylesheet" href="./styles/logs.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div class="app__container" id="app">
+      <button
+        class="btn app__start-button"
+        v-if="!gameIsRunning"
+        @click="startGame"
+      >
+        Start
+      </button>
+      <div class="app__game-ui" v-if="gameIsRunning">
+        <div class="app__game-health-bar-container">
+          <div class="HeathBarContainer">
+            <div class="harryHeathBar" :style="{ width: harryHealth + '%'}">
+              {{ harryHealth }}
+            </div>
+          </div>
+          <div class="HeathBarContainer">
+            <div
+              class="voldemortHeathBar"
+              :style="{ width: voldemortHealth + '%'}"
+            >
+              {{ voldemortHealth }}
+            </div>
+          </div>
+        </div>
+        <div class="app__game-action">
+          <div class="app__game-action-harrypotter">
+            <div class="app__game-action-harrypotter-before"></div>
+            <div class="app__game-action-harrypotter-middle"></div>
+            <div class="app__game-action-harrypotter-after"></div>
+            <div
+              class="app__game-action-harrypotter-wand"
+              :class="{harryCastSpell: harryCastSpell}"
+            ></div>
+            <div class="app__game-action-harrypotter-left-eye"></div>
+            <div class="app__game-action-harrypotter-right-eye"></div>
+          </div>
+          <div class="app__game-action-spell-container">
+            <div
+              class="app__game-action-spell-container--harry"
+              :class="{sectumsempra: sectumsempra, protego: protego, expecto: expecto}"
+            ></div>
+            <div
+              class="app__game-action-spell-container--voldemort"
+              :class="{avadaKedavra: avadaKedavra, demento: summonDementor}"
+            ></div>
+          </div>
+          <div class="app__game-action-voldemort">
+            <div class="app__game-action-voldemort-before"></div>
+            <div class="app__game-action-voldemort-middle"></div>
+            <div class="app__game-action-voldemort-after"></div>
+            <div
+              class="app__game-action-voldemort-wand"
+              :class="{voldCastSpell: voldCastSpell}"
+            ></div>
+            <div class="app__game-action-voldemort-left-eye"></div>
+            <div class="app__game-action-voldemort-right-eye"></div>
+          </div>
+        </div>
+      </div>
+      <div class="app__game-bottom-section" v-if="gameIsRunning">
+        <div class="app__game-controls">
+          <button
+            class="btn app__game-controls--sectumsempra"
+            @click="attack"
+            :disabled="ControlsIsDisabled"
+          >
+            sectumsempra
+          </button>
+          <button
+            class="btn app__game-controls--expecto"
+            @click="expectoPatronum"
+            :disabled="ControlsIsDisabled"
+          >
+            expecto
+          </button>
+          <button
+            class="btn app__game-controls--protego"
+            @click="protect"
+            :disabled="ControlsIsDisabled"
+          >
+            protego
+          </button>
+        </div>
+        <div class="app__game-logs" style="overflow: hidden">
+          <ul>
+            <li
+              v-for="log in logs"
+              :class="{harryLog: log.isHarry, voldemortLog: !log.isHarry}"
+            >
+              {{ log.text }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+/* <div class="app__game-health-bar-container">
+<div class="harryHeathBarContainer">
+  <div class="harryHeathBar"></div>
+</div>
+<div class="voldemortHeathBarContainer">
+  <div class="voldemortHeathBar"></div>
+</div>
+</div> */
+
+.app__game-health-bar-container {
+  width: 700px;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.HeathBarContainer {
+  width: 300px;
+  height: 50px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+}
+
+.harryHeathBar {
+  width: 80%;
+  height: 50px;
+  color: black;
+  text-align: center;
+  background: white;
+  line-height: 50px;
+  transition: all 0.3s ease-out;
+}
+
+.voldemortHeathBar {
+  width: 80%;
+  height: 50px;
+  color: black;
+  text-align: center;
+  background: white;
+  line-height: 50px;
+  transition: all 0.3s ease-out;
+}
