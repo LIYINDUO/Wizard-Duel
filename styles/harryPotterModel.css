@@ -16,9 +16,8 @@
   width: 30px;
   height: 0;
   border-bottom: 78px solid black;
-  border-left: 30px solid white;
-  border-right: 30px solid white;
-  background: black;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
   position: absolute;
   top: 33%;
   left: 50%;
