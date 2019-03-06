@@ -48,3 +48,22 @@ body {
   color: white;
   overflow: hidden;
 }
+
+@media all and (max-width: 640px) {
+  .app__container {
+    height: 900px;
+  }
+  .app__game-ui {
+    height: 890px;
+    justify-content: space-around;
+  }
+
+  .game-ui__Controls,
+  .game-ui__Logs {
+    width: 880px;
+  }
+  .game-ui__Controls-and-Logs {
+    height: 400px;
+    flex-direction: column;
+  }
+}

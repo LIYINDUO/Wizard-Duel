@@ -20,3 +20,11 @@
   background: white;
   color: #1f1f1f;
 }
+
+@media (hover: hover) {
+  .btn::hover {
+    border: solid 2px #1f1f1f;
+    background: #1f1f1f;
+    color: #fff;
+  }
+}
