@@ -3,58 +3,48 @@ body {
 }
 
 .app__container {
-  width: 800px;
+  width: 900px;
   height: 600px;
-  margin: 100px auto;
-  position: relative;
+  margin: 90px auto;
+  background: black;
+  box-shadow: 6px 8px 5px #888;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 6px 8px 5px #888;
-  background: black;
-}
-
-.app__start-button {
-  margin: 10px;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1rem;
-  font-weight: 600;
 }
 
 .app__game-ui {
-  width: 700px;
-  height: 300px;
-  border: 1px solid white;
+  width: 890px;
+  height: 590px;
+  border: 1px solid #fff;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.app__game-action {
-  width: 700px;
-  height: 200px;
-  position: relative;
-  background-color: white;
+.game-ui__Controls-and-Logs {
+  width: 880px;
+  height: 190px;
+  /* border: 1px solid #fff; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.app__game-controls {
-  width: 300px;
-  height: 200px;
+.game-ui__Controls {
+  width: 430px;
+  height: 180px;
+  /* border: 1px solid #fff; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  border-right: 1px solid white;
 }
-.app__game-logs {
-  width: 400px;
-  height: 200px;
+.game-ui__Logs {
+  width: 430px;
+  height: 176px;
+  border: 2px solid #fff;
+  position: relative;
   color: white;
   overflow: hidden;
-}
-.app__game-bottom-section {
-  width: 700px;
-  height: 200px;
-  border: 1px solid white;
-  display: flex;
 }

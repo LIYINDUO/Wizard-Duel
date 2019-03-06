@@ -5,14 +5,18 @@ new Vue({
     voldemortIsAttacking: false,
     harryHealth: 100,
     voldemortHealth: 100,
-    ControlsIsDisabled: false,
-    harryCastSpell: false,
-    voldCastSpell: false,
-    sectumsempra: false,
-    protego: false,
-    expecto: false,
-    avadaKedavra: false,
-    summonDementor: false,
+    harryIsCastingSpell: false,
+    voldemortIsCastingSpell: false,
+    controlsIsDisabled: false,
+    harrySpells: {
+      sectemSempra: false,
+      protego: false,
+      expectoPatronum: false
+    },
+    voldemortSpells: {
+      avadaKedavra: false,
+      summonDementor: false
+    },
     logs: [],
     intervalId: null
   },
@@ -20,70 +24,69 @@ new Vue({
     startGame() {
       this.logs = [];
       this.intervalId = null;
-      this.gameIsRunning = true;
-      this.voldemortIsAttacking = true;
       this.harryHealth = 100;
       this.voldemortHealth = 100;
+      this.gameIsRunning = true;
+      this.voldemortIsAttacking = true;
     },
-    attack() {
-      this.ControlsIsDisabled = true;
-      this.harryCastSpell = true;
-      this.sectumsempra = true;
+    harryCastSpell(callback) {
+      this.harryIsCastingSpell = true;
+      this.controlsIsDisabled = true;
       setTimeout(() => {
+        this.harryIsCastingSpell = false;
+        this.controlsIsDisabled = false;
+        callback();
+      }, 1200);
+    },
+    castSectumSempra() {
+      this.harrySpells.sectemSempra = true;
+      const intervalIdTemp = this.intervalId;
+      this.harryCastSpell(() => {
+        if (intervalIdTemp !== this.intervalId) return;
+        this.harrySpells.sectemSempra = false;
         this.voldemortHealth -= 10;
-        this.sectumsempra = false;
-        this.harryCastSpell = false;
-        this.ControlsIsDisabled = false;
         this.logs.unshift({
           isHarry: true,
-          text: "Harry dealt 10 damages to Voldemort."
+          text: "Harry dealt 10 damages to voldemort using sectumsempra."
         });
         this.checkWin();
-      }, 1000);
+      });
     },
-    protect() {
-      this.ControlsIsDisabled = true;
-      this.harryCastSpell = true;
-      this.protego = true;
-      setTimeout(() => {
-        this.protego = false;
-        this.harryCastSpell = false;
-        this.ControlsIsDisabled = false;
-      }, 1000);
+    castProtego() {
+      this.harrySpells.protego = true;
+      this.harryCastSpell(() => {
+        this.harrySpells.protego = false;
+      });
     },
-    expectoPatronum() {
-      this.ControlsIsDisabled = true;
-      this.harryCastSpell = true;
-      this.expecto = true;
-      setTimeout(() => {
-        this.expecto = false;
-        this.harryCastSpell = false;
-        this.ControlsIsDisabled = false;
-      }, 1000);
+    castExpectoPatronum() {
+      this.harrySpells.expectoPatronum = true;
+      this.harryCastSpell(() => {
+        this.harrySpells.expectoPatronum = false;
+      });
     },
     checkWin() {
-      if (!this.gameIsRunning) return;
-      if (this.harryHealth <= 0) {
-        clearInterval(this.intervalId);
+      if (this.voldemortHealth <= 0) {
         this.voldemortIsAttacking = false;
-        setTimeout(() => {
-          if (confirm("You Lost! New Game?")) {
-            this.startGame();
-          } else {
-            this.gameIsRunning = false;
-          }
-        }, 1000);
-      } else if (this.voldemortHealth <= 0) {
         clearInterval(this.intervalId);
-        this.voldemortIsAttacking = false;
         setTimeout(() => {
-          if (confirm("You Won! New Game?")) {
+          if (confirm("You Won! Start new game?")) {
             this.gameIsRunning = false;
             this.startGame();
           } else {
             this.gameIsRunning = false;
           }
-        }, 1000);
+        }, 100);
+      } else if (this.harryHealth <= 0) {
+        this.voldemortIsAttacking = false;
+        clearInterval(this.intervalId);
+        setTimeout(() => {
+          if (confirm("You Lost! Start new game?")) {
+            this.gameIsRunning = false;
+            this.startGame();
+          } else {
+            this.gameIsRunning = false;
+          }
+        }, 100);
       }
     }
   },
@@ -91,50 +94,56 @@ new Vue({
     voldemortIsAttacking() {
       if (this.voldemortIsAttacking) {
         this.intervalId = setInterval(() => {
-          let randomSpellIndex = Math.floor(Math.random() * 2);
-          this.voldCastSpell = true;
-          if (randomSpellIndex) {
-            this.summonDementor = true;
-          } else {
-            this.avadaKedavra = true;
-          }
-          setTimeout(() => {
-            this.voldCastSpell = false;
-            if (randomSpellIndex) {
-              this.summonDementor = false;
-            } else {
-              this.avadaKedavra = false;
-            }
-            if (randomSpellIndex === 0) {
-              if (this.protego) {
+          let spellIndex = Math.floor(Math.random() * 2);
+          if (spellIndex === 0) {
+            // avadaKedavra
+            this.voldemortIsCastingSpell = true;
+            this.voldemortSpells.avadaKedavra = true;
+            const intervalIdTemp = this.intervalId;
+            setTimeout(() => {
+              this.voldemortIsCastingSpell = false;
+              this.voldemortSpells.avadaKedavra = false;
+              if (this.harrySpells.protego) {
                 this.logs.unshift({
                   isHarry: true,
-                  text: "Harry blocked the killing curse with a protego charm."
+                  text: "Harry blocked the killing curse using protego."
                 });
               } else {
+                if (intervalIdTemp !== this.intervalId) return;
                 this.harryHealth -= 20;
                 this.logs.unshift({
                   isHarry: false,
-                  text: "Voldemort dealt 20 damages to Harry."
+                  text:
+                    "Voldemort dealt 20 damages to Harry using avada kedavra."
                 });
                 this.checkWin();
               }
-            } else {
-              if (this.expecto) {
+            }, 1600);
+          } else if (spellIndex === 1) {
+            // summonDementor
+            this.voldemortIsCastingSpell = true;
+            this.voldemortSpells.summonDementor = true;
+            const intervalIdTemp = this.intervalId;
+            setTimeout(() => {
+              this.voldemortIsCastingSpell = false;
+              this.voldemortSpells.summonDementor = false;
+              if (this.harrySpells.expectoPatronum) {
                 this.logs.unshift({
                   isHarry: true,
-                  text: "Harry cast the dementor away with a patronum charm."
+                  text: "Harry casted the dementor away using his patronum."
                 });
               } else {
+                if (intervalIdTemp !== this.intervalId) return;
                 this.harryHealth -= 50;
                 this.logs.unshift({
                   isHarry: false,
-                  text: "Voldemort dealt 50 damages to Harry with a dementor."
+                  text:
+                    "Voldemort dealt 50 damages to Harry through a dementor."
                 });
                 this.checkWin();
               }
-            }
-          }, 1500);
+            }, 1600);
+          }
         }, 3000);
       }
     }

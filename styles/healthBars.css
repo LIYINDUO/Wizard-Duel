@@ -1,0 +1,23 @@
+.game-ui__Health-Bars {
+  width: 870px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.health-bar__container {
+  width: 400px;
+  height: 40px;
+  border: 1px solid #fff;
+}
+
+.health-bar {
+  background: #fff;
+  color: black;
+  height: 40px;
+  width: 390px;
+  text-align: center;
+  line-height: 40px;
+  transition: all 0.3s ease-out;
+}

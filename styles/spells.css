@@ -1,78 +1,68 @@
-.app__game-action-spell-container {
-  width: 300px;
-  height: 200px;
-  background-color: white;
+.spell__container-harry {
+  width: 10px;
+  height: 10px;
+  /* background: grey; */
   position: absolute;
-  left: 200px;
-}
-
-.app__game-action-spell-container--harry {
-  position: absolute;
-  /* height: 10px;
-  width: 10px; */
+  top: 45%;
   left: 0%;
-  top: 45%;
-  /* background: grey; */
-  /* animation: spellLeftToRight 1s ease-out 0.6s; */
 }
-
-.app__game-action-spell-container--voldemort {
+.spell__container-voldemort {
+  width: 10px;
+  height: 10px;
+  /* background: grey; */
   position: absolute;
-  /* height: 10px; */
-  /* width: 10px; */
-  right: 0%;
   top: 45%;
-  /* background: grey; */
+  right: 0%;
 }
 
-.expecto {
-  width: 70px;
-  height: 50px;
+.avadaKedavra {
+  width: 60px;
+  height: 5px;
+  background: green;
+  border-radius: 5px;
+  animation: spellRightToLeft 0.8s ease-out 0.8s;
+}
+.summonDementor {
   top: 30%;
-  transform: skew(-20deg);
-  background: skyblue;
-  animation: spellLeftToRight 1s ease-out 0.6s;
-}
-.protego {
-  width: 5px;
-  height: 160px;
-  background-color: transparent;
-  border-radius: 50%;
-  border-right: 10px solid blue;
-  top: 10%;
-  animation: spellProtego 1s ease-out 0.6s;
-}
-
-.demento {
   width: 0px;
   height: 0px;
-  border-left: 30px solid transparent;
   border-right: 30px solid black;
   border-top: 30px solid black;
+  border-left: 30px solid transparent;
   border-bottom: 30px solid black;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
-  top: 30%;
-  background: transparent;
-  animation: spellRightToLeft 1s ease-out 0.6s;
+  animation: spellRightToLeft 0.8s ease-out 0.8s;
 }
-.avadaKedavra {
+
+.sectumSempra {
   width: 60px;
-  height: 4px;
-  top: 40%;
-  background: green;
-  border-radius: 7px;
-  animation: spellRightToLeft 1s ease-out 0.6s;
-}
-.sectumsempra {
-  width: 60px;
-  height: 4px;
-  top: 40%;
+  height: 5px;
   background: black;
-  border-radius: 7px;
-  animation: spellLeftToRight 1s ease-out 0.6s;
+  border-radius: 5px;
+  animation: spellLeftToRight 0.8s ease-out 0.4s;
+}
+
+.expectoPatronum {
+  top: 35%;
+  left: 3%;
+  width: 60px;
+  height: 40px;
+  transform: skew(-20deg);
+  background: skyblue;
+  animation: spellLeftToRight 0.8s ease-out 0.4s;
+}
+
+.protego {
+  top: 10%;
+  width: 10px;
+  height: 160px;
+  border-right: 10px solid blue;
+  border-radius: 50%;
+  background: transparent;
+  animation: spellStayPut 0.8s ease-out 0.4s;
 }
 
 @keyframes spellLeftToRight {
@@ -80,21 +70,22 @@
     left: 100%;
   }
 }
+
 @keyframes spellRightToLeft {
   100% {
     right: 100%;
   }
 }
-@keyframes spellProtego {
-  0% {
-    opacity: 0;
-  }
+
+@keyframes spellStayPut {
   30% {
     opacity: 1;
   }
-  60% {
+
+  70% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }

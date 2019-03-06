@@ -1,0 +1,79 @@
+/* width: 210px;
+  height: 210px;
+  border: 1px solid #1f1f1f; */
+
+.voldemort__head {
+  width: 70px;
+  height: 70px;
+  background: black;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50px;
+}
+.voldemort__body {
+  width: 30px;
+  height: 0;
+  border-bottom: 78px solid black;
+  border-left: 30px solid white;
+  border-right: 30px solid white;
+  background: black;
+  position: absolute;
+  top: 33%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.voldemort__legs {
+  width: 90px;
+  height: 65px;
+  top: 69%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  position: absolute;
+  background: black;
+  border-radius: 4px 4px 0 0;
+}
+.voldemort__wand {
+  width: 63px;
+  height: 3px;
+  border-radius: 4px;
+  background: black;
+  position: absolute;
+  top: 43%;
+  left: 10%;
+  transform-origin: 100% 100%;
+  transform: rotate(31deg);
+}
+.voldemort__left-eye {
+  width: 14px;
+  height: 10px;
+  background: white;
+  border-radius: 10px / 5px;
+  position: absolute;
+  top: 40%;
+  left: 4%;
+}
+.voldemort__right-eye {
+  width: 14px;
+  height: 10px;
+  background: white;
+  border-radius: 10px / 5px;
+  position: absolute;
+  top: 40%;
+  left: 30%;
+}
+
+.voldemort__cast-spell {
+  animation: voldemortCastSpell 0.8s ease-in-out;
+}
+
+@keyframes voldemortCastSpell {
+  50% {
+    transform: rotate(70deg);
+  }
+  100% {
+    transform: rotate(20deg);
+  }
+}

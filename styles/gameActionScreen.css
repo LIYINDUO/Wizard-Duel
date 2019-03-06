@@ -1,0 +1,22 @@
+.game-ui__Action-Screen {
+  width: 870px;
+  height: 230px;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: flex-end;
+  background: #fff;
+}
+
+.harry__container,
+.voldemort__container {
+  width: 210px;
+  height: 210px;
+  /* border: 1px solid #1f1f1f; */
+  position: relative;
+}
+.spell__channel {
+  width: 460px;
+  height: 210px;
+  /* border: 1px solid #1f1f1f; */
+  position: relative;
+}
